@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/14 17:08:45 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/14 17:17:01 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_substr	init_struct(t_substr sub)
 	return (sub);
 }
 
-t_substr	parse_conv(t_substr substr, const char **fmt)
+t_substr	parse_flags(t_substr substr, const char **fmt)
 {
 	while ((**fmt == '-' && !(substr.f_minus)) || (**fmt == '0' && !(substr.f_zero)))
 	{
@@ -53,16 +53,33 @@ t_substr	parse_conv(t_substr substr, const char **fmt)
 			substr.f_zero = 1;
 		(*fmt)++;
 	}
-	while (ft_isdigit(**fmt))
-		substr.width = substr.width * 10 + *((*fmt)++) - '0';
+	return (substr);
+}
+
+t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
+{
+	if (**fmt == '*')
+	{
+		substr.width = va_arg(args, int);
+		(*fmt)++;
+	}
+	else
+		while (ft_isdigit(**fmt))
+			substr.width = substr.width * 10 + *((*fmt)++) - '0';
 	if (**fmt == '.')
 	{
 		substr.preci = 0;
 		substr.f_zero = 0;
 		(*fmt)++;
 	}
-	while (ft_isdigit(**fmt))
-		substr.preci = substr.preci * 10 + *((*fmt)++) - '0';
+	if (**fmt == '*')
+	{
+		substr.preci = va_arg(args, int);
+		(*fmt)++;
+	}
+	else
+		while (ft_isdigit(**fmt))
+			substr.preci = substr.preci * 10 + *((*fmt)++) - '0';
 	return (substr);
 }
 
@@ -72,7 +89,8 @@ int		convert(const char **fmt, va_list args)
 	int			printed;
 
 	substr = init_struct(substr);
-	substr = parse_conv(substr, fmt); 
+	substr = parse_flags(substr, fmt); 
+	substr = parse_fields(substr, fmt, args);
 	//	if (**fmt == 'c')
 	//		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
 	//	else if (**fmt == 's')
@@ -87,7 +105,6 @@ int		convert(const char **fmt, va_list args)
 		printed = print_nbr(substr);
 	}
 	//display_struct(substr);
-	
 	return (printed);
 }
 
