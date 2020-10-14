@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/14 16:58:53 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/14 17:48:12 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct			s_substr
 void	display_struct(t_substr substr);
 char	*precise_int(t_substr conv);
 char	*zero_pad_int(t_substr conv);
-int		print_nbr(t_substr substr);
+int		print_int(t_substr substr, va_list args);
 int		ft_printf(const char *fmt, ...);
 
 #endif
