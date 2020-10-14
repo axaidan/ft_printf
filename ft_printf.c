@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/14 14:18:15 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/14 17:08:45 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,24 @@ int		convert(const char **fmt, va_list args)
 {
 	t_substr	substr;
 	int			printed;
-	int			conversion;
-	char		*str;
 
 	substr = init_struct(substr);
 	substr = parse_conv(substr, fmt); 
-	display_struct(substr);
-	if (**fmt == 'c')
-		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
-	else if (**fmt == 's')
-		ft_putstr_fd((substr.str = va_arg(args, char *)), 1);
-	else if (**fmt == 'd' || **fmt == 'i')
-		ft_putnbr_fd((substr.i = va_arg(args, int)), 1);
+	//	if (**fmt == 'c')
+	//		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
+	//	else if (**fmt == 's')
+	//		ft_putstr_fd((substr.str = va_arg(args, char *)), 1);
+	if (**fmt == 'd' || **fmt == 'i')
+	{
+		substr.sub = ft_itoa((substr.i = va_arg(args, int)));
+		if (substr.f_zero)
+			substr.sub = zero_pad_int(substr);
+		else
+			substr.sub = precise_int(substr);
+		printed = print_nbr(substr);
+	}
+	//display_struct(substr);
+	
 	return (printed);
 }
 
