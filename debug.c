@@ -4,6 +4,7 @@ void	display_struct(t_substr substr)
 {
 	printf("=== DISPLAY STRUCT ===\n");
 	printf("\ti\t=\t%d\n", substr.i);
+	printf("\tu\t=\t%u\n", substr.u);
 	printf("\tc\t=\t%c\n", substr.c);
 	printf("\tstr\t=\t%s\n", substr.str);
 	printf("\tptr\t=\t%p\n", substr.ptr);

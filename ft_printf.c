@@ -6,12 +6,16 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/15 15:00:01 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/15 15:51:38 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+ * initializes the structure before each conversions
+ * precision initialized to -1 to signal it was not set at all, to 0 for example
+ */
 t_substr	init_struct(t_substr sub)
 {
 	sub.i = 0;
@@ -84,18 +88,21 @@ int		convert(const char **fmt, va_list args)
 
 	substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
 	/*
-	substr = init_struct(substr);
-	substr = parse_flags(substr, fmt); 
-	substr = parse_fields(substr, fmt, args);
-	*/
-	display_struct(substr);
+	   substr = init_struct(substr);
+	   substr = parse_flags(substr, fmt); 
+	   substr = parse_fields(substr, fmt, args);
+	   */
+	//display_struct(substr);
 	//	if (**fmt == 'c')
 	//		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
 	//	else if (**fmt == 's')
 	//		ft_putstr_fd((substr.str = va_arg(args, char *)), 1);
 	if (**fmt == 'd' || **fmt == 'i')
 		printed = print_int(substr, args);
-	free(substr.sub);
+	else if (**fmt == 'u')
+		printed = print_unsigned_int(substr, args);
+	if (substr.sub)
+		free(substr.sub);
 	return (printed);
 }
 
