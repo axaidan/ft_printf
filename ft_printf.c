@@ -6,25 +6,11 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/14 17:49:19 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/15 15:00:01 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int		conv_key(char c)
-{
-	char	*conv_keys;
-	int		i;
-
-	conv_keys = "cspdiuxX%";
-	i = 0;
-	while (conv_keys[i] && conv_keys[i] != c)
-		i++;
-	if (conv_keys[i] == '\0')
-		return (-1);
-	return (i);
-}
 
 t_substr	init_struct(t_substr sub)
 {
@@ -40,6 +26,10 @@ t_substr	init_struct(t_substr sub)
 	return (sub);
 }
 
+/*
+ * sets f_zero and f_minus, ignores f_zero if f_minus present
+ * what should I do if more than one of those flags ? 
+ */
 t_substr	parse_flags(t_substr substr, const char **fmt)
 {
 	while ((**fmt == '-' && !(substr.f_minus)) || (**fmt == '0' && !(substr.f_zero)))
@@ -56,6 +46,10 @@ t_substr	parse_flags(t_substr substr, const char **fmt)
 	return (substr);
 }
 
+/*
+ * sets width and precision
+ * ignores f_zero if precision present
+ */
 t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 {
 	if (**fmt == '*')
@@ -88,16 +82,19 @@ int		convert(const char **fmt, va_list args)
 	t_substr	substr;
 	int			printed;
 
+	substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
+	/*
 	substr = init_struct(substr);
 	substr = parse_flags(substr, fmt); 
 	substr = parse_fields(substr, fmt, args);
+	*/
+	display_struct(substr);
 	//	if (**fmt == 'c')
 	//		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
 	//	else if (**fmt == 's')
 	//		ft_putstr_fd((substr.str = va_arg(args, char *)), 1);
 	if (**fmt == 'd' || **fmt == 'i')
 		printed = print_int(substr, args);
-	//display_struct(substr);
 	free(substr.sub);
 	return (printed);
 }
@@ -105,7 +102,6 @@ int		convert(const char **fmt, va_list args)
 int		ft_printf(const char *fmt, ...)
 {
 	va_list		args;
-	const char	*temp;
 	int			printed;
 
 	va_start(args, fmt);

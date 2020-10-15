@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/14 17:48:12 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/15 14:43:54 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@
 # define HEXU	7
 # define PERC	8
 
-typedef struct			s_substr
+typedef struct					s_substr
 {
-	int		i;
-	char	c;
-	char	*str;
-	void	*ptr;
-	int		width;
-	int		preci;
-	int		f_zero;
-	int		f_minus;
-	char	*sub;
-}						t_substr;
+	int				i;
+	unsigned int	u;
+	char			c;
+	char			*str;
+	void			*ptr;
+	int				width;
+	int				preci;
+	int				f_zero;
+	int				f_minus;
+	char			*sub;
+}								t_substr;
 
 void	display_struct(t_substr substr);
 char	*precise_int(t_substr conv);
