@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/15 15:51:38 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/17 16:26:55 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,25 @@ int		convert(const char **fmt, va_list args)
 	int			printed;
 
 	substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
+	// SHOULD ADD AN ERROR CASE IF .preci or .width < 0
+	// 		NOT POSSIBLE FOR THE MOMENT
+	// 	OR IF 
 	/*
 	   substr = init_struct(substr);
 	   substr = parse_flags(substr, fmt); 
 	   substr = parse_fields(substr, fmt, args);
 	   */
 	//display_struct(substr);
-	//	if (**fmt == 'c')
-	//		ft_putchar_fd((char)(substr.c = va_arg(args, int)), 1);
-	//	else if (**fmt == 's')
-	//		ft_putstr_fd((substr.str = va_arg(args, char *)), 1);
-	if (**fmt == 'd' || **fmt == 'i')
+	if (**fmt == 'c' || **fmt == '%')
+		printed = print_char(substr, args, **fmt);
+	else if (**fmt == 's')
+		printed = print_str(substr, args);
+	else if (**fmt == 'd' || **fmt == 'i')
 		printed = print_int(substr, args);
 	else if (**fmt == 'u')
 		printed = print_unsigned_int(substr, args);
+	else if (**fmt == 'x' || **fmt == 'X')
+		printed = print_hexa(substr, args, **fmt);
 	if (substr.sub)
 		free(substr.sub);
 	return (printed);
@@ -110,6 +115,7 @@ int		ft_printf(const char *fmt, ...)
 {
 	va_list		args;
 	int			printed;
+	int			ret;
 
 	va_start(args, fmt);
 	printed = 0;
@@ -122,8 +128,10 @@ int		ft_printf(const char *fmt, ...)
 		}
 		else 
 		{
-			fmt++;
-			printed += convert(&fmt, args);
+			fmt++;	// SKIP '%'
+			if ((ret = convert(&fmt, args)) < 0)
+				return (-1);
+			printed += ret;
 		}
 		fmt++;
 	}

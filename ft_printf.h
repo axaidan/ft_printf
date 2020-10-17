@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/15 15:36:33 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/17 15:59:41 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct					s_substr
 {
 	int				i;
 	unsigned int	u;
-	char			c;
+	unsigned char	c;
 	char			*str;
 	void			*ptr;
 	int				width;
@@ -55,8 +55,26 @@ char			*utoa(unsigned int n);
 int				print_unsigned_int(t_substr substr, va_list args);
 
 /*
+ * CHAR
+ */
+int				print_char(t_substr conv, va_list args);
+
+/*
+ * STR
+ */
+int				print_str(t_substr conv, va_list args);
+
+/*
+ * HEXADECIMAL
+ */
+char			*utox(unsigned int n, char c);
+int				print_hexa(t_substr conv, va_list args, char c);
+
+/*
  * GENERAL
  */
+int				putchar_ret(char c);
+int				putstr_ret(char *s);
 int				ft_printf(const char *fmt, ...);
 
 #endif
