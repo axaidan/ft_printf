@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 16:26:55 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:35:05 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 	if (**fmt == '*')
 	{
 		substr.preci = va_arg(args, int);
+		if (substr.preci < 0)
+			substr.preci = -1;
 		(*fmt)++;
 	}
 	else
@@ -81,21 +83,16 @@ t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 	return (substr);
 }
 
+// SHOULD ADD AN ERROR CASE IF
+// 		.width < 0 ==> NOT POSSIBLE FOR THE MOMENT
+// 		if more than 2 '-' or '0' flags
+//	IF .preci < 0 ==> "taken as if precision were omitted"
 int		convert(const char **fmt, va_list args)
 {
 	t_substr	substr;
 	int			printed;
 
 	substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
-	// SHOULD ADD AN ERROR CASE IF .preci or .width < 0
-	// 		NOT POSSIBLE FOR THE MOMENT
-	// 	OR IF 
-	/*
-	   substr = init_struct(substr);
-	   substr = parse_flags(substr, fmt); 
-	   substr = parse_fields(substr, fmt, args);
-	   */
-	//display_struct(substr);
 	if (**fmt == 'c' || **fmt == '%')
 		printed = print_char(substr, args, **fmt);
 	else if (**fmt == 's')
@@ -106,6 +103,8 @@ int		convert(const char **fmt, va_list args)
 		printed = print_unsigned_int(substr, args);
 	else if (**fmt == 'x' || **fmt == 'X')
 		printed = print_hexa(substr, args, **fmt);
+	else if	(**fmt == 'p')
+		printed = print_addr(substr, args);
 	if (substr.sub)
 		free(substr.sub);
 	return (printed);

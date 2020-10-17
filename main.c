@@ -99,18 +99,31 @@ int main(void)
 	/*
 	 * HEX
 	 */
-	ret_ft_ = ft_printf("\"%3.x %010.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
-	ret_lib = printf("\"%3.x %010.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
+	ret_ft_ = ft_printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
+	ret_lib = printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
-	ret_ft_ = ft_printf("\"bla bla bla%x %-013.2X\"\n", 0, -123);
-	ret_lib = printf("\"bla bla bla%x %-013.2X\"\n", 0, -123);
+	ret_ft_ = ft_printf("\"bla bla bla%x %-13X\"\n", 0, -123);
+	ret_lib = printf("\"bla bla bla%x %-13X\"\n", 0, -123);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
 	ret_ft_ = ft_printf("\"%s\"\n", "lalalalala");
 	ret_lib = printf("\"%s\"\n", "lalalalala");
+	printf("ret_ft_\t=\t%4d\n", ret_ft_);
+	printf("ret_lib\t=\t%4d\n\n", ret_lib);
+
+	/*
+	 * PTR
+	 */
+	ret_ft_ = ft_printf("\"%p\"\n", &ret_ft_);
+	ret_lib = printf("\"%p\"\n", &ret_ft_);
+	printf("ret_ft_\t=\t%4d\n", ret_ft_);
+	printf("ret_lib\t=\t%4d\n\n", ret_lib);
+
+	ret_ft_ = ft_printf("\"%p\"\n", NULL);
+	ret_lib = printf("\"%p\"\n", NULL);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
