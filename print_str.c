@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_str.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
+/*   Updated: 2020/10/18 13:25:28 by axaidan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*precise_str(t_substr conv)
@@ -24,10 +36,21 @@ int		print_str(t_substr conv, va_list args)
 	int		len;
 	int		printed;
 
-	if (!(conv.str = va_arg(args, char*))) // CAN IT RETURN NULL ?
+	conv.str = va_arg(args, char*);
+	if (!(conv.str) && !(conv.sub = ft_strdup("(null)")))
 		return (-1);
-	if (!(conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str)))
-		return (-1);
+	/*
+	if (!(conv.str))
+	{
+		if (!(conv.sub = ft_strdup("(null)")))
+			return (-1);
+	}
+	*/
+	else
+	{
+		if (!(conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str)))
+			return (-1);
+	}
 	len = (int)ft_strlen(conv.sub);
 	printed = 0;
 	if (!(conv.f_minus))

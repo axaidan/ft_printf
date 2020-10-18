@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 15:59:41 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:50:13 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int				print_unsigned_int(t_substr substr, va_list args);
 /*
  * CHAR
  */
-int				print_char(t_substr conv, va_list args);
+int				print_char(t_substr conv, va_list args, char c);
 
 /*
  * STR
@@ -69,6 +69,12 @@ int				print_str(t_substr conv, va_list args);
  */
 char			*utox(unsigned int n, char c);
 int				print_hexa(t_substr conv, va_list args, char c);
+
+/*
+ * VOID *
+ */
+char			*ltox(unsigned long n, char c);
+int				print_addr(t_substr conv, va_list args);
 
 /*
  * GENERAL
