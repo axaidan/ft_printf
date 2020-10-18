@@ -4,6 +4,7 @@ int main(void)
 {
 	int	ret_lib;
 	int	ret_ft_;
+	char	*p_null;
 
 	/*
 	 * INT AND UNSIGNED INT
@@ -96,9 +97,16 @@ int main(void)
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
-	/*
-	 * HEX
-	 */
+	p_null = NULL;
+	//ret_lib = printf("\"%.5s\"\n", p_null);
+	//ret_ft_ = ft_printf("\"%.5s\"\n", p_null);
+	ret_lib = printf("\"%-*.6s\"\n", -20, NULL);
+	ret_ft_ = ft_printf("\"%-*.6s\"\n", -20, NULL);
+	printf("ret_ft_\t=\t%4d\n", ret_ft_);
+	printf("ret_lib\t=\t%4d\n\n", ret_lib);
+	 /*
+
+	 // HEX
 	ret_ft_ = ft_printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
 	ret_lib = printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -114,9 +122,7 @@ int main(void)
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
-	/*
-	 * PTR
-	 */
+	// PTR
 	ret_ft_ = ft_printf("\"%p\"\n", &ret_ft_);
 	ret_lib = printf("\"%p\"\n", &ret_ft_);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -126,6 +132,7 @@ int main(void)
 	ret_lib = printf("\"%p\"\n", NULL);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
+*/
 
 	return (0);
 }

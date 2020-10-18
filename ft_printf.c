@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 17:35:05 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/18 16:23:57 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 	if (**fmt == '*')
 	{
 		substr.width = va_arg(args, int);
+		if (substr.width < 0)
+		{
+			substr.f_minus = 1;
+			substr.width = -substr.width;
+		}
 		(*fmt)++;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 16:07:16 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/18 16:10:57 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		print_int(t_substr conv, va_list args)
 
 	if (!(conv.sub = ft_itoa((conv.i = va_arg(args, int)))))
 		return (-1);
-	if (conv.preci == 0 && conv.u == 0)
+	if (conv.preci == 0 && conv.i == 0)
 	   return (0);	
 	conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv);
 	/*

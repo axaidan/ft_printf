@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 17:50:13 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/10/18 15:08:11 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 # define __FT_PRINTF_H__
 
 # include <stdarg.h>
-
-# define CHAR	0
-# define STR	1
-# define PTR	2
-# define INTD	3
-# define INTI	4
-# define UNS	5
-# define HEXL	6
-# define HEXU	7
-# define PERC	8
 
 typedef struct					s_substr
 {
