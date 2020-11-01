@@ -9,6 +9,7 @@ int main(void)
 	/*
 	 * INT AND UNSIGNED INT
 	 */
+	printf("======================================\nINTS AND UNSIGNED INTS\n");
 	ret_ft_ = ft_printf("bla bla bla |%*.*d| et un autre |%5.*d| et un 3eme |%0*i|\n", 15, 10, -100, 4, -2, 3, -120987);	
 	ret_lib = printf("bla bla bla |%*.*d| et un autre |%5.*d| et un 3eme |%0*i|\n", 15, 10, -100, 4, -2, 3, -120987);	
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -29,6 +30,7 @@ int main(void)
 	ret_lib = printf("\"%u %u %u %u\"\n", -100, 1, 0, -10);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
+
 	ret_ft_ = ft_printf("\"%9.2d %0u %.u %-12.1d blabla %-10d\"\n", -100, 1, 0, -10, 42);
 	ret_lib = printf("\"%9.2d %0u %.u %-12.1d blabla %-10d\"\n", -100, 1, 0, -10, 42);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -37,6 +39,7 @@ int main(void)
 	/*
 	 * CHARS 
 	 */
+	printf("======================================\nCHARS\n");
 	ret_ft_ = ft_printf("\"|%c| |%c| |%c|\"\n", 'i', 'a', '9');
 	ret_lib = printf("\"|%c| |%c| |%c|\"\n", 'i', 'a', '9');
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -57,6 +60,7 @@ int main(void)
 	/*
 	 * STRS
 	 */
+	printf("======================================\nSTRS\n");
 	ret_ft_ = ft_printf("\"%s\"\n", "lalalalala");
 	ret_lib = printf("\"%s\"\n", "lalalalala");
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -98,15 +102,17 @@ int main(void)
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
 	p_null = NULL;
-	//ret_lib = printf("\"%.5s\"\n", p_null);
-	//ret_ft_ = ft_printf("\"%.5s\"\n", p_null);
+	ret_lib = printf("\"%.5s\"\n", p_null);
+	ret_ft_ = ft_printf("\"%.5s\"\n", p_null);
 	ret_lib = printf("\"%-*.6s\"\n", -20, NULL);
 	ret_ft_ = ft_printf("\"%-*.6s\"\n", -20, NULL);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
-	 /*
+	 
+	 
 
 	 // HEX
+	printf("======================================\nHEXA\n");
 	ret_ft_ = ft_printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
 	ret_lib = printf("\"%3.x %10.3X |%-15.8X| %x %10.12x\"\n", 1209873, 129387, 12390871, 478, 347896);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -123,6 +129,8 @@ int main(void)
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
 
 	// PTR
+	
+	printf("======================================\nPOINTERS\n");
 	ret_ft_ = ft_printf("\"%p\"\n", &ret_ft_);
 	ret_lib = printf("\"%p\"\n", &ret_ft_);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
@@ -132,7 +140,7 @@ int main(void)
 	ret_lib = printf("\"%p\"\n", NULL);
 	printf("ret_ft_\t=\t%4d\n", ret_ft_);
 	printf("ret_lib\t=\t%4d\n\n", ret_lib);
-*/
+
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:15:03 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 16:23:32 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/01 18:46:44 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				print_hexa(t_substr conv, va_list args, char c)
 		return (-1);
 	if (conv.preci == 0 && conv.u == 0)
 		return (0);
-	conv.sub = (conv.f_zero) ? zero_pad_hex(conv) : precise_int(conv);
+	conv.sub = (conv.f_zero) ? zero_pad_hex(conv) : precise_hex(conv);
 	hex_len = (int)ft_strlen(conv.sub);
 	hex_len = (hex_len < conv.preci) ? conv.preci : hex_len;
 	j = 0;
@@ -81,5 +81,7 @@ int				print_hexa(t_substr conv, va_list args, char c)
 	if (conv.f_minus && !(conv.f_zero))
 		while (i + j < conv.width)
 			j += putchar_ret(' ');
+	if (conv.sub)
+		free(conv.sub);
 	return (i + j);
 }

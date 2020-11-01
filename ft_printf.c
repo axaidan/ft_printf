@@ -6,14 +6,14 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/18 16:23:57 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/01 18:43:32 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
- * initializes the structure before each conversions
+ * initializes the structure before each conversion
  * precision initialized to -1 to signal it was not set at all, to 0 for example
  */
 t_substr	init_struct(t_substr sub)
@@ -53,6 +53,8 @@ t_substr	parse_flags(t_substr substr, const char **fmt)
 /*
  * sets width and precision
  * ignores f_zero if precision present
+ * 		NEED TO :	- check all combinations and mutual exclusions
+ * 					- check mini-atois() and look for bugs (extra '-', negative va_arg())
  */
 t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 {
@@ -110,8 +112,12 @@ int		convert(const char **fmt, va_list args)
 		printed = print_hexa(substr, args, **fmt);
 	else if	(**fmt == 'p')
 		printed = print_addr(substr, args);
+	// USELESS, STRUCTURE NEVER RETURNED AND (substr.sub == NULL), always
+	// SHOULD BE PASSED AS A POINTER TO STRUCTURE
+	/*
 	if (substr.sub)
 		free(substr.sub);
+	*/
 	return (printed);
 }
 
@@ -127,14 +133,17 @@ int		ft_printf(const char *fmt, ...)
 	{
 		if (*fmt != '%')
 		{
-			ft_putchar_fd(*fmt, 1);
+			ft_putchar_fd(*fmt, 1); 	// can use putchar_ret(), save 3 lines
 			printed++;
 		}
 		else 
 		{
 			fmt++;	// SKIP '%'
-			if ((ret = convert(&fmt, args)) < 0)
+			if ((ret = convert(&fmt, args)) < 0) 	// IS EVERYTHING FREED ?
+			{										// SHOULD PROBABLY va_end() ?
+				va_end(args);
 				return (-1);
+			}
 			printed += ret;
 		}
 		fmt++;

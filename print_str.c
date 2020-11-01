@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/18 16:41:12 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/01 18:36:15 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ int		print_str(t_substr conv, va_list args)
 	if (conv.f_minus)
 		while (printed < conv.width)
 			printed += putchar_ret(' ');
+	// FIXING MEMORY LEAK, IRRELEVANT free() in ft_printf.c
+	if (conv.sub)
+		free(conv.sub);
 	return (printed);
 }

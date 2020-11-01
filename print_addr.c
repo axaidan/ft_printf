@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/10/17 17:59:32 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/01 18:48:18 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ int			print_addr(t_substr conv, va_list args)
 	if (conv.f_minus)
 		while (i + j < conv.width)
 			j += putchar_ret(' ');
+	// FIXING LEAKS, "if" PROBABLY USELESS
+	if (conv.sub)
+		free(conv.sub);
 	return (i + j);
 }
