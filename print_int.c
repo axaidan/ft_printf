@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/01 19:44:26 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/01 19:47:15 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ char	*precise_int(t_substr conv)
 		return (conv.sub);
 	if (conv.preci >= 0)	// SUPERFLU
 	{
-		temp = malloc(sizeof(char) * (neg + conv.preci + 1));		// NEEDS PROTECTION
+		if (!(temp = malloc(sizeof(char) * (neg + conv.preci + 1))))		// NEEDS PROTECTION
+		{
+			free(conv.sub);
+			return (NULL);
+		}
 		i = 0;
 		if (neg)
 			temp[i++] = '-';
@@ -51,7 +55,11 @@ char	*zero_pad_int(t_substr conv)
 	neg = (conv.sub[0] == '-') ? 1 : 0;
 	if (base_len >= conv.width)
 		return (conv.sub);
-	temp = malloc(sizeof(char) * (base_len + 1));	// NEEDS PROTECTION
+	if (!(temp = malloc(sizeof(char) * (base_len + 1))))	// NEEDS PROTECTION
+	{
+		free(conv.sub);
+		return (NULL);
+	}
 	i = 0;
 	if (conv.sub[i] == '-')
 		temp[i++] = '-';
@@ -80,7 +88,8 @@ int		print_int(t_substr conv, va_list args)
 		free(conv.sub);
 		return (0);	
 	}
-	conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv); 	// MALLOC PROTECTION 
+	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv))) 	// MALLOC PROTECTION 
+		return (-1);
 																		// CONTINUES HERE
 	/*
 	   if (conv.f_zero)
