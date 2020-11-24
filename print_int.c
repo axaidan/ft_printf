@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 12:28:56 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 15:25:45 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*precise_int(t_substr conv)
 			temp[i++] = '0';
 		while (conv.sub[neg])
 			temp[i++] = conv.sub[neg++];
-		temp[i] = 0;
+		temp[i] = '\0';
 		free(conv.sub);
 		conv.sub = temp;
 	}
@@ -81,13 +81,20 @@ int		print_int(t_substr conv, va_list args)
 	int		j;
 	int		i;
 
+	conv.i = va_arg(args, int);
+	if (!(conv.sub = (!conv.i && !conv.preci) ? ft_strdup("") : ft_itoa(conv.i)))
+		return (-1);
+	/*
 	if (!(conv.sub = ft_itoa((conv.i = va_arg(args, int)))))
 		return (-1);
+		*/
+	/*
 	if (conv.preci == 0 && conv.i == 0)
 	{
 		free(conv.sub);
 		return (0);	
 	}
+	*/
 	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv))) 	// MALLOC PROTECTION 
 		return (-1);
 																		// CONTINUES HERE
