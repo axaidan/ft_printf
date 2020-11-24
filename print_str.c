@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/01 18:36:15 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 14:24:22 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*precise_str(t_substr conv)
 	char	*null_str;
 
 	// doublon dans print_str
+	/*
 	if (!(conv.str))
 	{
 		null_str = "(null)";
@@ -27,6 +28,7 @@ char	*precise_str(t_substr conv)
 		else
 			conv.str = null_str;
 	}
+	*/
 	len = ft_strlen(conv.str);
 	len = (conv.preci < len) ? conv.preci : len ;
 	if (!(conv.sub = malloc(sizeof(char) * (len + 1))))
@@ -47,8 +49,10 @@ int		print_str(t_substr conv, va_list args)
 	int		printed;
 
 	conv.str = va_arg(args, char *);
-	if (!(conv.str))	// doublon dans precise_str
-		conv.str = (conv.preci >= 0 && conv.preci < 6) ? "" : "(null)";
+//	if (!(conv.str))	// doublon dans precise_str
+//		conv.str = (conv.preci >= 0 && conv.preci < 6) ? "" : "(null)";
+	if (!(conv.str))
+		conv.str = "(null)";
 	if (!(conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str)))
 		return (-1);
 	len = (int)ft_strlen(conv.sub);
