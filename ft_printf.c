@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/01 18:43:32 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/13 17:35:36 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,24 @@ t_substr	parse_fields(t_substr substr, const char **fmt, va_list args)
 // 		.width < 0 ==> NOT POSSIBLE FOR THE MOMENT
 // 		if more than 2 '-' or '0' flags
 //	IF .preci < 0 ==> "taken as if precision were omitted"
+//	
 int		convert(const char **fmt, va_list args)
 {
 	t_substr	substr;
 	int			printed;
 
-	substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
+	substr.i = 0;
+    substr.c = 0;
+    substr.str = NULL;
+    substr.ptr = NULL;
+    substr.width = 0;
+    substr.preci = -1;
+    substr.f_zero = 0;
+    substr.f_minus = 0;
+    substr.sub = NULL;
+	printed = 0;
+	substr = parse_fields(parse_flags(substr, fmt), fmt, args);
+	//substr = parse_fields(parse_flags(init_struct(substr), fmt), fmt, args);
 	if (**fmt == 'c' || **fmt == '%')
 		printed = print_char(substr, args, **fmt);
 	else if (**fmt == 's')
