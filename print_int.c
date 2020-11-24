@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 17:38:56 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 18:28:02 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,21 @@ char	*precise_int(t_substr conv)
 	neg = (conv.sub[0] == '-') ? 1 : 0;
 	if (conv.preci < 0 || dgts >= conv.preci)
 		return (conv.sub);
-	if (conv.preci >= 0)	// SUPERFLU
+	if (!(temp = malloc(sizeof(char) * (neg + conv.preci + 1))))
 	{
-		if (!(temp = malloc(sizeof(char) * (neg + conv.preci + 1))))		// NEEDS PROTECTION
-		{
-			free(conv.sub);
-			return (NULL);
-		}
-		i = 0;
-		if (neg)
-			temp[i++] = '-';
-		while (dgts++ < conv.preci)
-			temp[i++] = '0';
-		while (conv.sub[neg])
-			temp[i++] = conv.sub[neg++];
-		temp[i] = '\0';
 		free(conv.sub);
-		conv.sub = temp;
+		return (NULL);
 	}
+	i = 0;
+	if (neg)
+		temp[i++] = '-';
+	while (dgts++ < conv.preci)
+		temp[i++] = '0';
+	while (conv.sub[neg])
+		temp[i++] = conv.sub[neg++];
+	temp[i] = '\0';
+	free(conv.sub);
+	conv.sub = temp;
 	return (conv.sub);
 }
 
@@ -55,7 +52,7 @@ char	*zero_pad_int(t_substr conv)
 	neg = (conv.sub[0] == '-') ? 1 : 0;
 	if (base_len >= conv.width)
 		return (conv.sub);
-	if (!(temp = malloc(sizeof(char) * (base_len + 1))))	// NEEDS PROTECTION
+	if (!(temp = malloc(sizeof(char) * (base_len + 1))))
 	{
 		free(conv.sub);
 		return (NULL);
@@ -80,7 +77,8 @@ int		print_int(t_substr conv, va_list args)
 	int		i;
 
 	conv.i = va_arg(args, int);
-	if (!(conv.sub = (!conv.i && !conv.preci) ? ft_strdup("") : ft_itoa(conv.i)))
+	conv.sub = (!conv.i && !conv.preci) ? ft_strdup("") : ft_itoa(conv.i);
+	if (!conv.sub)
 		return (-1);
 	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv)))
 		return (-1);
@@ -123,7 +121,6 @@ int		print_unsigned_int(t_substr conv, va_list args)
 	if (conv.f_minus && !(conv.f_zero))
 		while (i + j < conv.width)
 			j += putchar_ret(' ');
-	// FIXING MEMORY LEAKS
 	if (conv.sub)
 		free(conv.sub);
 	return (i + j);
