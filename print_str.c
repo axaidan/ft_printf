@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 14:24:22 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 14:26:46 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*precise_str(t_substr conv)
 {
 	int	i;
 	int	len;
-	char	*null_str;
 
 	// doublon dans print_str
 	/*
