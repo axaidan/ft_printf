@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 15:25:45 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 15:30:43 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ char	*zero_pad_int(t_substr conv)
 
 int		print_int(t_substr conv, va_list args)
 {
-	//int		len;
-	//int		dgts;
 	int		int_len;
 	int		j;
 	int		i;
@@ -84,26 +82,8 @@ int		print_int(t_substr conv, va_list args)
 	conv.i = va_arg(args, int);
 	if (!(conv.sub = (!conv.i && !conv.preci) ? ft_strdup("") : ft_itoa(conv.i)))
 		return (-1);
-	/*
-	if (!(conv.sub = ft_itoa((conv.i = va_arg(args, int)))))
+	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv)))
 		return (-1);
-		*/
-	/*
-	if (conv.preci == 0 && conv.i == 0)
-	{
-		free(conv.sub);
-		return (0);	
-	}
-	*/
-	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv))) 	// MALLOC PROTECTION 
-		return (-1);
-																		// CONTINUES HERE
-	/*
-	   if (conv.f_zero)
-	   conv.sub = zero_pad_int(conv);
-	   else
-	   conv.sub = precise_int(conv);
-	   */
 	int_len = (int)ft_strlen(conv.sub);
 	int_len = (int_len < conv.preci) ? conv.preci : int_len;
 	j = 0;
@@ -116,7 +96,6 @@ int		print_int(t_substr conv, va_list args)
 	if (conv.f_minus && !(conv.f_zero))
 		while (i + j < conv.width)
 			j += putchar_ret(' ');
-	// FIXING MEMORY LEAKS, "if" PROBABLY USELESS
 	if (conv.sub)
 		free(conv.sub);
 	return (i + j);
@@ -128,13 +107,9 @@ int		print_unsigned_int(t_substr conv, va_list args)
 	int		j;
 	int		i;
 
-	if (!(conv.sub = utoa((conv.u = va_arg(args, unsigned int)))))
+	conv.u = va_arg(args, unsigned int);
+	if (!(conv.sub = (!conv.u && !conv.preci) ? ft_strdup("") : utoa(conv.u)))
 		return (-1);
-	if (conv.preci == 0 && conv.u == 0)
-	{
-		free(conv.sub);
-		return (0);
-	}
 	conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv);
 	int_len = (int)ft_strlen(conv.sub);
 	int_len = (int_len < conv.preci) ? conv.preci : int_len;
