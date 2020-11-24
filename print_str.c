@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 14:26:46 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 14:31:26 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,6 @@ char	*precise_str(t_substr conv)
 	int	i;
 	int	len;
 
-	// doublon dans print_str
-	/*
-	if (!(conv.str))
-	{
-		null_str = "(null)";
-		if (conv.preci >= 0 && conv.preci < 6)
-			return (ft_strdup(""));
-		else
-			conv.str = null_str;
-	}
-	*/
 	len = ft_strlen(conv.str);
 	len = (conv.preci < len) ? conv.preci : len ;
 	if (!(conv.sub = malloc(sizeof(char) * (len + 1))))
@@ -48,8 +37,6 @@ int		print_str(t_substr conv, va_list args)
 	int		printed;
 
 	conv.str = va_arg(args, char *);
-//	if (!(conv.str))	// doublon dans precise_str
-//		conv.str = (conv.preci >= 0 && conv.preci < 6) ? "" : "(null)";
 	if (!(conv.str))
 		conv.str = "(null)";
 	if (!(conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str)))
@@ -58,7 +45,7 @@ int		print_str(t_substr conv, va_list args)
 	printed = 0;
 	if (!(conv.f_minus))
 		while (printed < conv.width - len)
-			printed += putchar_ret(' ');
+			printed += (conv.f_zero) ? putchar_ret('0') : putchar_ret(' ');
 	printed += putstr_ret(conv.sub);
 	if (conv.f_minus)
 		while (printed < conv.width)

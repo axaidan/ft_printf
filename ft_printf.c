@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 14:16:14 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 14:38:01 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_substr	init_struct(t_substr sub)
  */
 t_substr	parse_flags(t_substr substr, const char **fmt)
 {
-	while ((**fmt == '-' && !(substr.f_minus)) || (**fmt == '0' && !(substr.f_zero)))
+	while ((**fmt == '-' && !(substr.f_minus)) || (**fmt == '0' /*&& !(substr.f_zero)*/))
 	{
 		if (**fmt == '-')
 		{
