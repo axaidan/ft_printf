@@ -6,11 +6,34 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 15:55:28 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 17:42:49 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char     *precise_addr(t_substr conv)
+{
+    int     i;  
+    int     j;  
+    int     len;
+    char    *temp;
+
+    len = ft_strlen(conv.sub);
+    if (conv.preci < 0 || len >= conv.preci)
+        return (conv.sub);
+    temp = malloc(sizeof(char) * (conv.preci + 1));    // NEEDS PROTECTION
+    i = 0;
+    while (len++ < conv.preci)
+        temp[i++] = '0';
+    j = 0;
+    while (conv.sub[j])
+        temp[i++] = conv.sub[j++];
+    temp[i] = 0;
+    free(conv.sub);
+    conv.sub = temp;
+    return (conv.sub);
+} 
 
 /*
  * no .f_zero
@@ -23,25 +46,17 @@ static char	*make_addr_str(t_substr conv, va_list args)
 
 	addr = (unsigned long)va_arg(args, void *);	
 	if (!addr)
-	{
-		if (!(conv.sub = ft_strdup("0x0")))
+		if (!(conv.sub = ft_strdup("0")))
 			return (NULL);
-	}
+	if (addr > 4294967295)
+		conv.sub = ltox(addr, 'x');
 	else
-	{
-		/*
-		if (addr > 4294967295)
-			conv.sub = ltox(addr, 'x');
-		else
-			conv.sub = utox((unsigned int)addr, 'x');
-			*/
-		if (!(conv.sub = ltox(addr, 'x')))
-			return (NULL);
-		temp = conv.sub;
-		if (!(conv.sub = ft_strjoin("0x", conv.sub)))
-			return (NULL);
-		free(temp);
-	}
+		conv.sub = utox((unsigned int)addr, 'x');
+	conv.sub = precise_addr(conv);
+	temp = conv.sub;
+	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
+		return (NULL);
+	free(temp);
 	return (conv.sub);
 }
 
