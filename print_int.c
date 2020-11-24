@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/01 19:47:15 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 12:28:56 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ char	*precise_int(t_substr conv)
 {
 	int		i;
 	int		neg;
-	int		digits;
+	int		dgts;
 	char	*temp;
 
-	digits = (conv.sub[0] == '-') ? ft_strlen(conv.sub) - 1 : ft_strlen(conv.sub);
+	dgts = (conv.sub[0] == '-') ? ft_strlen(conv.sub) - 1 : ft_strlen(conv.sub);
 	neg = (conv.sub[0] == '-') ? 1 : 0;
-	if (conv.preci < 0 || digits >= conv.preci)
+	if (conv.preci < 0 || dgts >= conv.preci)
 		return (conv.sub);
 	if (conv.preci >= 0)	// SUPERFLU
 	{
@@ -33,7 +33,7 @@ char	*precise_int(t_substr conv)
 		i = 0;
 		if (neg)
 			temp[i++] = '-';
-		while (digits++ < conv.preci)
+		while (dgts++ < conv.preci)
 			temp[i++] = '0';
 		while (conv.sub[neg])
 			temp[i++] = conv.sub[neg++];
@@ -76,7 +76,7 @@ char	*zero_pad_int(t_substr conv)
 int		print_int(t_substr conv, va_list args)
 {
 	//int		len;
-	//int		digits;
+	//int		dgts;
 	int		int_len;
 	int		j;
 	int		i;
