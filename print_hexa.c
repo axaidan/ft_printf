@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:15:03 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/01 18:46:44 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 15:41:52 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int				print_hexa(t_substr conv, va_list args, char c)
 	int	i;
 	int	j;
 
-	if (!(conv.sub = utox((conv.u = va_arg(args, unsigned int)), c)))
+	conv.u = va_arg(args, unsigned int);
+	if (!(conv.sub = utox(conv.u), c))
 		return (-1);
 	if (conv.preci == 0 && conv.u == 0)
 		return (0);
