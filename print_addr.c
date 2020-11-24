@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 15:48:34 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 15:55:28 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ static char	*make_addr_str(t_substr conv, va_list args)
 	}
 	else
 	{
+		/*
 		if (addr > 4294967295)
 			conv.sub = ltox(addr, 'x');
 		else
 			conv.sub = utox((unsigned int)addr, 'x');
-		if (!(conv.sub))
+			*/
+		if (!(conv.sub = ltox(addr, 'x')))
 			return (NULL);
 		temp = conv.sub;
 		if (!(conv.sub = ft_strjoin("0x", conv.sub)))
