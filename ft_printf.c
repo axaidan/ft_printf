@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/13 17:35:36 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/24 14:16:14 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int		convert(const char **fmt, va_list args)
 		printed = print_hexa(substr, args, **fmt);
 	else if	(**fmt == 'p')
 		printed = print_addr(substr, args);
+	else
+		return (-1);
 	// USELESS, STRUCTURE NEVER RETURNED AND (substr.sub == NULL), always
 	// SHOULD BE PASSED AS A POINTER TO STRUCTURE
 	/*
