@@ -6,17 +6,17 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:50:32 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 12:13:33 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	 *precise_addr(t_conv conv)
+static char	*precise_addr(t_conv conv)
 {
-	int	 	i;  
-	int	 	j;  
-	int	 	len;
+	int		i;
+	int		j;
+	int		len;
 	char	*temp;
 
 	len = ft_strlen(conv.sub);
@@ -27,7 +27,8 @@ static char	 *precise_addr(t_conv conv)
 	}
 	if (conv.preci < 0 || len >= conv.preci)
 		return (conv.sub);
-	temp = malloc(sizeof(char) * (conv.preci + 1));	// NEEDS PROTECTION
+	if (!(temp = malloc(sizeof(char) * (conv.preci + 1))))
+		return (NULL);
 	i = 0;
 	while (len++ < conv.preci)
 		temp[i++] = '0';
@@ -36,26 +37,29 @@ static char	 *precise_addr(t_conv conv)
 		temp[i++] = conv.sub[j++];
 	temp[i] = '\0';
 	free(conv.sub);
-	return (conv.sub = temp);
-} 
+	return (temp);
+}
 
 static char	*make_addr_str(t_conv conv, va_list args)
 {
 	char			*temp;
 	unsigned long	addr;
 
-	addr = (unsigned long)va_arg(args, void *);	
-	if (!addr)
-		if (!(conv.sub = ft_strdup("0")))
-			return (NULL);
-//	if (addr > 4294967295)
-	conv.sub = ltox(addr, 'x');					// NEEDS PROTECTION
-//	else
-//		conv.sub = utox((unsigned int)addr, 'x');	// NEEDS PROTECTION
-	conv.sub = precise_addr(conv);
+	addr = (unsigned long)va_arg(args, void *);
+	if (!(conv.sub = ltox(addr, 'x')))
+		return (NULL);
+	temp = conv.sub;
+	if (!(conv.sub = precise_addr(conv)))
+	{
+		free(temp);
+		return (NULL);
+	}
 	temp = conv.sub;
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
+	{
+		free(temp);
 		return (NULL);
+	}
 	free(temp);
 	return (conv.sub);
 }
@@ -73,12 +77,10 @@ int			print_addr(t_conv conv, va_list args)
 	if (!(conv.f_minus))
 		while (j < conv.width - len)
 			j += putchar_ret(' ');
-	i = putstr_ret(conv.sub); 
+	i = putstr_ret(conv.sub);
 	if (conv.f_minus)
 		while (i + j < conv.width)
 			j += putchar_ret(' ');
-	// FIXING LEAKS, "if" PROBABLY USELESS
-	if (conv.sub)
-		free(conv.sub);
+	free(conv.sub);
 	return (i + j);
 }
