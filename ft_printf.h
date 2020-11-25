@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:24:25 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 15:47:21 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct	s_conv
 	char			*sub;
 }				t_conv;
 
-char			*precise_int(t_conv conv);
-char			*zero_pad_int(t_conv conv);
 int				print_int(t_conv conv, va_list args);
 char			*utoa(unsigned int n);
 int				print_unsigned_int(t_conv conv, va_list args);
