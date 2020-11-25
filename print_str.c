@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 18:03:20 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 14:31:26 by axaidan          ###   ########.fr       */
+/*   Created: 2020/11/25 11:07:37 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/25 11:07:39 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int		print_str(t_substr conv, va_list args)
 	conv.str = va_arg(args, char *);
 	if (!(conv.str))
 		conv.str = "(null)";
-	if (!(conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str)))
+	conv.sub = (conv.preci >= 0) ? precise_str(conv) : ft_strdup(conv.str);
+	if (!conv.sub)
 		return (-1);
 	len = (int)ft_strlen(conv.sub);
 	printed = 0;
@@ -50,8 +51,6 @@ int		print_str(t_substr conv, va_list args)
 	if (conv.f_minus)
 		while (printed < conv.width)
 			printed += putchar_ret(' ');
-	// FIXING MEMORY LEAK, IRRELEVANT free() in ft_printf.c
-	if (conv.sub)
-		free(conv.sub);
+	free(conv.sub);
 	return (printed);
 }

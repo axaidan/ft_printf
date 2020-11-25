@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ltox.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/25 11:02:06 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/25 11:02:20 by axaidan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int		count_chars(unsigned long n)
@@ -33,7 +45,7 @@ char			*ltox(unsigned long n, char c)
 	int				i;
 	char			*base_hexa;
 
-	base_hexa = (c == 'x') ? "0123456789abcdef": "0123456789ABCDEF";
+	base_hexa = (c == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
 	chars = count_chars(n);
 	if (!(str = malloc(sizeof(char) * (chars + 1)))) 
 		return (NULL);

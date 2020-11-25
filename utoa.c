@@ -6,7 +6,6 @@ static int		count_chars(unsigned long n)
 	
 	if (n == 0)
 		return (1);
-//	chars = (n < 0) ? 1 : 0;
 	chars = 0;
 	while (n)
 	{
