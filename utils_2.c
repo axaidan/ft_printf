@@ -6,7 +6,7 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 18:33:19 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 18:41:20 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 18:56:02 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,14 @@ char		*ft_strdup(const char *s)
 	}
 	copy[i] = '\0';
 	return (copy);
+}
+
+size_t		ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
