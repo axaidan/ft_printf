@@ -1,45 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:31:27 by axaidan          ###   ########.fr       */
+/*   Created: 2020/11/10 17:39:10 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 19:27:09 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-t_conv		init_struct(void)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_conv	conv;
+	size_t				i;
+	const unsigned char	*u_s1;
+	const unsigned char	*u_s2;
 
-	conv.i = 0;
-	conv.c = 0;
-	conv.str = NULL;
-	conv.ptr = NULL;
-	conv.width = 0;
-	conv.preci = -1;
-	conv.f_zero = 0;
-	conv.f_minus = 0;
-	conv.sub = NULL;
-	return (conv);
-}
-
-int			putchar_ret(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int			putstr_ret(char *s)
-{
-	int	i;
-
+	u_s1 = (const unsigned char*)s1;
+	u_s2 = (const unsigned char*)s2;
 	i = 0;
-	while (s[i])
-		i += putchar_ret(s[i]);
-	return (i);
+	while ((u_s1[i] || u_s2[i]) && i < n)
+	{
+		if (u_s1[i] != u_s2[i])
+			return (u_s1[i] - u_s2[i]);
+		i++;
+	}
+	return (0);
 }

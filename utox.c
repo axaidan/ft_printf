@@ -6,11 +6,11 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 13:34:03 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 13:35:55 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 14:31:47 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static int		count_chars(unsigned int n)
 {

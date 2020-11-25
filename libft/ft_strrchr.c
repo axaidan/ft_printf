@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 16:44:47 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:30:34 by axaidan          ###   ########.fr       */
+/*   Created: 2020/09/25 17:44:04 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 17:46:43 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		print_char(t_conv conv, va_list args, char c)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	const char	*pos;
+	int			i;
 
-	conv.c = (c == '%') ? '%' : (unsigned char)va_arg(args, int);
+	pos = NULL;
 	i = 0;
-	if (!(conv.f_minus))
-		while (i < conv.width - 1)
-			i += (conv.f_zero) ? putchar_ret('0') : putchar_ret(' ');
-	i += putchar_ret(conv.c);
-	if (conv.f_minus)
-		while (i < conv.width)
-			i += putchar_ret(' ');
-	return (i);
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			pos = s + i;
+		i++;
+	}
+	if (s[i] == '\0' && c != '\0' && pos == NULL)
+		return (NULL);
+	else if (c == '\0')
+		return ((char*)(s + i));
+	return ((char *)(pos));
 }

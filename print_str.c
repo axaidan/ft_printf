@@ -6,11 +6,11 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:07:37 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 13:33:41 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 14:31:09 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static char	*precise_str(t_conv conv)
 {

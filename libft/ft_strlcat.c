@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 16:44:47 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:30:34 by axaidan          ###   ########.fr       */
+/*   Created: 2020/09/25 18:17:05 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 16:48:34 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		print_char(t_conv conv, va_list args, char c)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int	i;
+	size_t	len_d;
+	size_t	len_s;
+	size_t	i;
 
-	conv.c = (c == '%') ? '%' : (unsigned char)va_arg(args, int);
-	i = 0;
-	if (!(conv.f_minus))
-		while (i < conv.width - 1)
-			i += (conv.f_zero) ? putchar_ret('0') : putchar_ret(' ');
-	i += putchar_ret(conv.c);
-	if (conv.f_minus)
-		while (i < conv.width)
-			i += putchar_ret(' ');
-	return (i);
+	len_d = ft_strlen((const char*)dest);
+	len_s = ft_strlen(src);
+	if (size > 0)
+	{
+		i = 0;
+		while (len_d + i < size - 1 && src[i])
+		{
+			dest[len_d + i] = src[i];
+			i++;
+		}
+		dest[len_d + i] = '\0';
+	}
+	if (len_d < size)
+		return (len_d + len_s);
+	return (size + len_s);
 }

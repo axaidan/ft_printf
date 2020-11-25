@@ -1,45 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:31:27 by axaidan          ###   ########.fr       */
+/*   Created: 2020/11/10 16:43:48 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 16:43:49 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-t_conv		init_struct(void)
-{
-	t_conv	conv;
-
-	conv.i = 0;
-	conv.c = 0;
-	conv.str = NULL;
-	conv.ptr = NULL;
-	conv.width = 0;
-	conv.preci = -1;
-	conv.f_zero = 0;
-	conv.f_minus = 0;
-	conv.sub = NULL;
-	return (conv);
-}
-
-int			putchar_ret(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int			putstr_ret(char *s)
+static int	len(const char *s)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
-		i += putchar_ret(s[i]);
+		i++;
 	return (i);
+}
+
+char		*ft_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	int		j;
+	char	*cat;
+
+	if (!s1 || !s2 || !(cat = malloc(sizeof(char) * (len(s1) + len(s2) + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		cat[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		cat[i + j] = s2[j];
+		j++;
+	}
+	cat[i + j] = '\0';
+	return (cat);
 }

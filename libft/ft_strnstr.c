@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:31:27 by axaidan          ###   ########.fr       */
+/*   Created: 2020/11/10 17:44:32 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 17:44:34 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-t_conv		init_struct(void)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t n)
 {
-	t_conv	conv;
+	size_t	i;
+	size_t	j;
 
-	conv.i = 0;
-	conv.c = 0;
-	conv.str = NULL;
-	conv.ptr = NULL;
-	conv.width = 0;
-	conv.preci = -1;
-	conv.f_zero = 0;
-	conv.f_minus = 0;
-	conv.sub = NULL;
-	return (conv);
-}
-
-int			putchar_ret(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int			putstr_ret(char *s)
-{
-	int	i;
-
+	if (needle[0] == '\0')
+		return ((char *)haystack);
 	i = 0;
-	while (s[i])
-		i += putchar_ret(s[i]);
-	return (i);
+	while (haystack[i] && i < n)
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j < n)
+		{
+			j++;
+			if (needle[j] == '\0')
+				return ((char*)(haystack + i));
+		}
+		i++;
+	}
+	return (NULL);
 }

@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 16:44:47 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:30:34 by axaidan          ###   ########.fr       */
+/*   Created: 2020/09/25 18:22:46 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/12 18:10:51 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		print_char(t_conv conv, va_list args, char c)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
+	size_t	len;
 
-	conv.c = (c == '%') ? '%' : (unsigned char)va_arg(args, int);
+	if (!dest || !src)
+		return (0);
+	len = 0;
+	while (src[len])
+		len++;
 	i = 0;
-	if (!(conv.f_minus))
-		while (i < conv.width - 1)
-			i += (conv.f_zero) ? putchar_ret('0') : putchar_ret(' ');
-	i += putchar_ret(conv.c);
-	if (conv.f_minus)
-		while (i < conv.width)
-			i += putchar_ret(' ');
-	return (i);
+	if (size != 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (len);
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utoa.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/25 13:33:48 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:31:38 by axaidan          ###   ########.fr       */
+/*   Created: 2020/09/25 12:20:18 by axaidan           #+#    #+#             */
+/*   Updated: 2020/11/10 15:47:44 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int		count_chars(unsigned long n)
+static int		count_chars(long n)
 {
 	int	chars;
 
 	if (n == 0)
 		return (1);
-	chars = 0;
+	chars = (n < 0) ? 1 : 0;
 	while (n)
 	{
 		n /= 10;
@@ -27,8 +27,13 @@ static int		count_chars(unsigned long n)
 	return (chars);
 }
 
-static void		make_str(char *str, unsigned long n, int *i)
+static void		make_str(char *str, long n, int *i)
 {
+	if (n < 0)
+	{
+		n = -n;
+		str[(*i)++] = '-';
+	}
 	if (n >= 10)
 	{
 		make_str(str, n / 10, i);
@@ -38,12 +43,12 @@ static void		make_str(char *str, unsigned long n, int *i)
 		str[(*i)++] = n + '0';
 }
 
-char			*utoa(unsigned int x)
+char			*ft_itoa(int x)
 {
-	unsigned long	n;
-	char			*str;
-	int				chars;
-	int				i;
+	long	n;
+	char	*str;
+	int		chars;
+	int		i;
 
 	n = x;
 	chars = count_chars(n);
