@@ -6,13 +6,13 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:39:26 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 13:36:27 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_conv	init_struct(void)
+t_conv		init_struct(void)
 {
 	t_conv	conv;
 

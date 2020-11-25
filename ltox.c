@@ -6,7 +6,7 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:02:06 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:02:20 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 13:36:16 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		count_chars(unsigned long n)
 {
 	int	chars;
-	
+
 	if (n == 0)
 		return (1);
 	chars = 0;
@@ -47,7 +47,7 @@ char			*ltox(unsigned long n, char c)
 
 	base_hexa = (c == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
 	chars = count_chars(n);
-	if (!(str = malloc(sizeof(char) * (chars + 1)))) 
+	if (!(str = malloc(sizeof(char) * (chars + 1))))
 		return (NULL);
 	i = 0;
 	make_str(str, n, &i, base_hexa);
