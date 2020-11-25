@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 18:42:43 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 18:57:22 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				ft_isdigit(int c);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strdup(const char *s);
 char			*ft_itoa(int x);
-size_t			ft_strlen(char *s);
+size_t			ft_strlen(const char *s);
 int				ft_printf(const char *fmt, ...);
 
 #endif
