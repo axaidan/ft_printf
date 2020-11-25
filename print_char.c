@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:44:47 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:37:31 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 12:16:11 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		print_char(t_conv conv, va_list args, char c)
 {
 	int	i;
 
-	// SHOULD BE UNSIGNED CHAR, putchar_ret() TAKES CHARS FOR NOW
 	conv.c = (c == '%') ? '%' : (unsigned char)va_arg(args, int);
 	i = 0;
 	if (!(conv.f_minus))
