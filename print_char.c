@@ -6,13 +6,13 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:44:47 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 14:11:07 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:37:31 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		print_char(t_substr conv, va_list args, char c)
+int		print_char(t_conv conv, va_list args, char c)
 {
 	int	i;
 

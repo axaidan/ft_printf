@@ -6,95 +6,95 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:31:07 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:40:46 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_substr	parse_flags(t_substr substr, const char **fmt)
+t_conv	parse_flags(t_conv conv, const char **fmt)
 {
-	while ((**fmt == '-' && !(substr.f_minus)) || (**fmt == '0'))
+	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
 	{
 		if (**fmt == '-')
 		{
-			substr.f_minus = 1;
-			substr.f_zero = 0;
+			conv.f_minus = 1;
+			conv.f_zero = 0;
 		}
-		if (**fmt == '0' && !(substr.f_minus))
-			substr.f_zero = 1;
+		if (**fmt == '0' && !(conv.f_minus))
+			conv.f_zero = 1;
 		(*fmt)++;
 	}
-	return (substr);
+	return (conv);
 }
 
-t_substr	parse_preci(t_substr substr, const char **fmt, va_list args)
+t_conv	parse_preci(t_conv conv, const char **fmt, va_list args)
 {
 	if (**fmt == '.')
 	{
-		substr.preci = 0;
-		substr.f_zero = 0;
+		conv.preci = 0;
+		conv.f_zero = 0;
 		(*fmt)++;
 	}
 	if (**fmt == '*')
 	{
-		substr.preci = va_arg(args, int);
-		if (substr.preci < 0)
-			substr.preci = -1;
+		conv.preci = va_arg(args, int);
+		if (conv.preci < 0)
+			conv.preci = -1;
 		(*fmt)++;
 	}
 	else
 		while (ft_isdigit(**fmt))
-			substr.preci = substr.preci * 10 + *((*fmt)++) - '0';
-	return (substr);
+			conv.preci = conv.preci * 10 + *((*fmt)++) - '0';
+	return (conv);
 }
 
-t_substr	parse_width(t_substr substr, const char **fmt, va_list args)
+t_conv	parse_width(t_conv conv, const char **fmt, va_list args)
 {
 	if (**fmt == '*')
 	{
-		substr.width = va_arg(args, int);
-		if (substr.width < 0)
+		conv.width = va_arg(args, int);
+		if (conv.width < 0)
 		{
-			substr.f_minus = 1;
-			substr.f_zero = 0;
-			substr.width = -substr.width;
+			conv.f_minus = 1;
+			conv.f_zero = 0;
+			conv.width = -conv.width;
 		}
 		(*fmt)++;
 	}
 	else
 		while (ft_isdigit(**fmt))
-			substr.width = substr.width * 10 + *((*fmt)++) - '0';
-	return (substr);
+			conv.width = conv.width * 10 + *((*fmt)++) - '0';
+	return (conv);
 }
 
-int			convert(const char **fmt, va_list args)
+int		convert(const char **fmt, va_list args)
 {
-	t_substr	substr;
-	int			printed;
+	t_conv	conv;
+	int		printed;
 
 	printed = 0;
-	substr = init_struct();
-	substr = parse_flags(substr, fmt);
-	substr = parse_preci(parse_width(substr, fmt, args), fmt, args);
+	conv = init_struct();
+	conv = parse_flags(conv, fmt);
+	conv = parse_preci(parse_width(conv, fmt, args), fmt, args);
 	if (**fmt == 'c' || **fmt == '%')
-		printed = print_char(substr, args, **fmt);
+		printed = print_char(conv, args, **fmt);
 	else if (**fmt == 's')
-		printed = print_str(substr, args);
+		printed = print_str(conv, args);
 	else if (**fmt == 'd' || **fmt == 'i')
-		printed = print_int(substr, args);
+		printed = print_int(conv, args);
 	else if (**fmt == 'u')
-		printed = print_unsigned_int(substr, args);
+		printed = print_unsigned_int(conv, args);
 	else if (**fmt == 'x' || **fmt == 'X')
-		printed = print_hexa(substr, args, **fmt);
+		printed = print_hexa(conv, args, **fmt);
 	else if (**fmt == 'p')
-		printed = print_addr(substr, args);
+		printed = print_addr(conv, args);
 	else
 		return (-1);
 	return (printed);
 }
 
-int			ft_printf(const char *fmt, ...)
+int		ft_printf(const char *fmt, ...)
 {
 	va_list		args;
 	int			printed;

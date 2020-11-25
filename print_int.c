@@ -6,13 +6,13 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 18:28:02 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:38:22 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*precise_int(t_substr conv)
+char	*precise_int(t_conv conv)
 {
 	int		i;
 	int		neg;
@@ -41,7 +41,7 @@ char	*precise_int(t_substr conv)
 	return (conv.sub);
 }
 
-char	*zero_pad_int(t_substr conv)
+char	*zero_pad_int(t_conv conv)
 {
 	int		i;
 	int		neg;
@@ -70,7 +70,7 @@ char	*zero_pad_int(t_substr conv)
 	return (conv.sub);
 }
 
-int		print_int(t_substr conv, va_list args)
+int		print_int(t_conv conv, va_list args)
 {
 	int		int_len;
 	int		j;
@@ -99,7 +99,7 @@ int		print_int(t_substr conv, va_list args)
 	return (i + j);
 }
 
-int		print_unsigned_int(t_substr conv, va_list args)
+int		print_unsigned_int(t_conv conv, va_list args)
 {
 	int		int_len;
 	int		j;

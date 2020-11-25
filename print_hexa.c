@@ -6,13 +6,13 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:15:03 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 15:45:34 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:38:00 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*precise_hex(t_substr conv)
+static char		*precise_hex(t_conv conv)
 {
 	int		i;
 	int		j;
@@ -35,7 +35,7 @@ static char		*precise_hex(t_substr conv)
 	return (conv.sub);
 } 
 
-static char		*zero_pad_hex(t_substr conv)
+static char		*zero_pad_hex(t_conv conv)
 {
 	int		i;  
 	int		j;
@@ -58,7 +58,7 @@ static char		*zero_pad_hex(t_substr conv)
 	return (conv.sub);
 }
 
-int				print_hexa(t_substr conv, va_list args, char c)
+int				print_hexa(t_conv conv, va_list args, char c)
 {
 	int	hex_len;
 	int	i;

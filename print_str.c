@@ -6,13 +6,13 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:07:37 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:07:39 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:38:35 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*precise_str(t_substr conv)
+char	*precise_str(t_conv conv)
 {
 	int	i;
 	int	len;
@@ -31,7 +31,7 @@ char	*precise_str(t_substr conv)
 	return (conv.sub);
 }
 
-int		print_str(t_substr conv, va_list args)
+int		print_str(t_conv conv, va_list args)
 {
 	int		len;
 	int		printed;

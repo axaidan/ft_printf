@@ -6,26 +6,26 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:28:19 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:39:26 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_substr	init_struct(void)
+t_conv	init_struct(void)
 {
-	t_substr	sub;
+	t_conv	conv;
 
-	sub.i = 0;
-	sub.c = 0;
-	sub.str = NULL;
-	sub.ptr = NULL;
-	sub.width = 0;
-	sub.preci = -1;
-	sub.f_zero = 0;
-	sub.f_minus = 0;
-	sub.sub = NULL;
-	return (sub);
+	conv.i = 0;
+	conv.c = 0;
+	conv.str = NULL;
+	conv.ptr = NULL;
+	conv.width = 0;
+	conv.preci = -1;
+	conv.f_zero = 0;
+	conv.f_minus = 0;
+	conv.sub = NULL;
+	return (conv);
 }
 
 int			putchar_ret(char c)

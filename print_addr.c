@@ -6,13 +6,13 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/24 17:51:43 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:37:14 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char     *precise_addr(t_substr conv)
+static char     *precise_addr(t_conv conv)
 {
     int     i;  
     int     j;  
@@ -44,7 +44,7 @@ static char     *precise_addr(t_substr conv)
  * no .f_zero
  * no .preci
  */
-static char	*make_addr_str(t_substr conv, va_list args)
+static char	*make_addr_str(t_conv conv, va_list args)
 {
 	char			*temp;
 	unsigned long	addr;
@@ -65,7 +65,7 @@ static char	*make_addr_str(t_substr conv, va_list args)
 	return (conv.sub);
 }
 
-int			print_addr(t_substr conv, va_list args)
+int			print_addr(t_conv conv, va_list args)
 {
 	int		len;
 	int		i;
