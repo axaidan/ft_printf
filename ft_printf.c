@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:27:50 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:31:07 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_substr	parse_flags(t_substr substr, const char **fmt)
 	return (substr);
 }
 
-t_substr	parse_width(t_substr substr, const char **fmt, va_list args)
+t_substr	parse_preci(t_substr substr, const char **fmt, va_list args)
 {
 	if (**fmt == '.')
 	{
