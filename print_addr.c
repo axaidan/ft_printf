@@ -6,44 +6,39 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:37:14 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 11:50:32 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char     *precise_addr(t_conv conv)
+static char	 *precise_addr(t_conv conv)
 {
-    int     i;  
-    int     j;  
-    int     len;
-    char    *temp;
+	int	 	i;  
+	int	 	j;  
+	int	 	len;
+	char	*temp;
 
-    len = ft_strlen(conv.sub);
+	len = ft_strlen(conv.sub);
 	if (!conv.preci)
 	{
 		free(conv.sub);
 		return (conv.sub = ft_strdup(""));
 	}
-    if (conv.preci < 0 || len >= conv.preci)
-        return (conv.sub);
-    temp = malloc(sizeof(char) * (conv.preci + 1));    // NEEDS PROTECTION
-    i = 0;
-    while (len++ < conv.preci)
-        temp[i++] = '0';
-    j = 0;
-    while (conv.sub[j])
-        temp[i++] = conv.sub[j++];
-    temp[i] = 0;
-    free(conv.sub);
-    conv.sub = temp;
-    return (conv.sub);
+	if (conv.preci < 0 || len >= conv.preci)
+		return (conv.sub);
+	temp = malloc(sizeof(char) * (conv.preci + 1));	// NEEDS PROTECTION
+	i = 0;
+	while (len++ < conv.preci)
+		temp[i++] = '0';
+	j = 0;
+	while (conv.sub[j])
+		temp[i++] = conv.sub[j++];
+	temp[i] = '\0';
+	free(conv.sub);
+	return (conv.sub = temp);
 } 
 
-/*
- * no .f_zero
- * no .preci
- */
 static char	*make_addr_str(t_conv conv, va_list args)
 {
 	char			*temp;
@@ -53,10 +48,10 @@ static char	*make_addr_str(t_conv conv, va_list args)
 	if (!addr)
 		if (!(conv.sub = ft_strdup("0")))
 			return (NULL);
-	if (addr > 4294967295)
-		conv.sub = ltox(addr, 'x');
-	else
-		conv.sub = utox((unsigned int)addr, 'x');
+//	if (addr > 4294967295)
+	conv.sub = ltox(addr, 'x');					// NEEDS PROTECTION
+//	else
+//		conv.sub = utox((unsigned int)addr, 'x');	// NEEDS PROTECTION
 	conv.sub = precise_addr(conv);
 	temp = conv.sub;
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
