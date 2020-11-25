@@ -6,7 +6,7 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 11:07:37 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:38:35 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 13:29:10 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*precise_str(t_conv conv)
 	int	len;
 
 	len = ft_strlen(conv.str);
-	len = (conv.preci < len) ? conv.preci : len ;
+	len = (conv.preci < len) ? conv.preci : len;
 	if (!(conv.sub = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;

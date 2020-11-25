@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 11:38:22 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/25 13:14:33 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,8 @@ int		print_unsigned_int(t_conv conv, va_list args)
 	conv.u = va_arg(args, unsigned int);
 	if (!(conv.sub = (!conv.u && !conv.preci) ? ft_strdup("") : utoa(conv.u)))
 		return (-1);
-	conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv);
+	if (!(conv.sub = (conv.f_zero) ? zero_pad_int(conv) : precise_int(conv)))
+		return (-1);
 	int_len = (int)ft_strlen(conv.sub);
 	int_len = (int_len < conv.preci) ? conv.preci : int_len;
 	j = 0;
