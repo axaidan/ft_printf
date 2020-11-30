@@ -84,7 +84,6 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 	int		int_len;
 
 	int_len = count_int_p(d, neg);
-	printf("\nint_len\t=\t%d\n", int_len);
 	if (!(s_i = malloc(sizeof(char) * (int_len + 1))))
 		return (NULL);
 	str = s_i;
@@ -96,7 +95,6 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 		return (NULL);
 	}
 	s_i = str;
-	printf("\ts_i\t=\t\"%s\"\n\ts_f\t=\t\"%s\"\n", s_i, s_f);
 	str = ft_strjoin(s_i, s_f);
 	free(s_i);
 	free(s_f);
