@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 20:11:05 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 20:20:51 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ t_conv	parse_preci(t_conv conv, const char **fmt, va_list args)
 	{
 		conv.preci = va_arg(args, int);
 		if (conv.preci < 0)
+		{
 			conv.preci = -1;
+			if (conv.f_zero_f)
+				conv.f_zero = 1;
+		}
 		(*fmt)++;
 	}
 	else
