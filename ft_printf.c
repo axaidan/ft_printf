@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 14:29:51 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/27 18:55:12 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int		convert(const char **fmt, va_list args)
 		printed = print_hexa(conv, args, **fmt);
 	else if (**fmt == 'p')
 		printed = print_addr(conv, args);
+	else if (**fmt == 'f')
+		printed = print_double(conv, args);
 	else
 		return (-1);
 	return (printed);

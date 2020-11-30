@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 18:57:22 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/27 18:22:47 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_conv
 	unsigned char	c;
 	char			*str;
 	void			*ptr;
+	double			d;
 	int				width;
 	int				preci;
 	int				f_zero;
@@ -31,6 +32,7 @@ typedef struct	s_conv
 	char			*sub;
 }				t_conv;
 
+char			*zero_pad_int(t_conv conv);
 int				print_int(t_conv conv, va_list args);
 char			*utoa(unsigned int n);
 int				print_unsigned_int(t_conv conv, va_list args);
@@ -55,5 +57,14 @@ char			*ft_strdup(const char *s);
 char			*ft_itoa(int x);
 size_t			ft_strlen(const char *s);
 int				ft_printf(const char *fmt, ...);
+
+/*
+ * BONUS
+ */
+double			roundup(double d, int afterpoint);
+double			roundup_p_zero(double d);
+int				zero_is_signed(long double lf);
+char			*ftoa(double d, int afterpoint);
+int				print_double(t_conv conv, va_list args);
 
 #endif

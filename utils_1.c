@@ -6,7 +6,7 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 10:52:56 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/25 18:33:11 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/27 18:20:35 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ t_conv		init_struct(void)
 	t_conv	conv;
 
 	conv.i = 0;
+	conv.u = 0;
 	conv.c = 0;
 	conv.str = NULL;
 	conv.ptr = NULL;
+	conv.d = 0.0;
 	conv.width = 0;
 	conv.preci = -1;
 	conv.f_zero = 0;
