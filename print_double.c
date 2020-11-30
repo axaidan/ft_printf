@@ -6,11 +6,10 @@
 /*   By: axaidan <axaidan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 18:05:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 18:37:22 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 19:18:00 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>	// !!!
 #include "ft_printf.h"
 
 int		print_double(t_conv conv, va_list args)

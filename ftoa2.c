@@ -36,7 +36,7 @@ int		get_relevant(double d, int afterpoint)
 		return (0);
 }
 
-void	shift_str(char **str)
+char	*shift_str(char **str)
 {
 	int		neg;
 	char	*temp;
@@ -47,10 +47,13 @@ void	shift_str(char **str)
 	buf = (neg) ? "-1" : "1";
 	temp = ft_strjoin(buf, (*str) + neg);
 	free(*str);
+	if (!temp)
+		return (NULL);
 	*str = temp;
+	return (*str);
 }
 
-void	roundup_str(char **str, int i)
+char	*roundup_str(char **str, int i)
 {
 	if ((*str)[i] >= '0' && (*str)[i] <= '8')
 		(*str)[i]++;
@@ -62,7 +65,9 @@ void	roundup_str(char **str, int i)
 	else if ((*str)[i] == '.')
 		roundup_str(str, i - 1);
 	else if ((*str)[i] == '-' || i == -1)
-		shift_str(str);
+		if (!(shift_str(str)))
+			return (NULL);
+	return (*str - i);
 }
 
 double	roundup_p_zero(double d)
