@@ -40,7 +40,7 @@ static void		make_i_str(char **str, long long n, int neg)
 	if (n < 10)
 	{
 		*((*str)++) = n + '0';
-		*((*str) = '\0';
+		**str = '\0';
 	}
 	if (n >= 10)
 	{
