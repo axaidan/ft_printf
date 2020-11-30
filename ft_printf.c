@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 18:36:43 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 20:08:43 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_conv	parse_flags(t_conv conv, const char **fmt)
 {
-	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
+//	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
+	while ((**fmt == '-')) || (**fmt == '0'))
 	{
 		if (**fmt == '-')
 		{
@@ -22,7 +23,8 @@ t_conv	parse_flags(t_conv conv, const char **fmt)
 			conv.f_zero_f = 0;
 			conv.f_zero = 0;
 		}
-		if (**fmt == '0' && !(conv.f_minus))
+	//	if (**fmt == '0' && !(conv.f_minus))
+		if (**fmt == '0')
 		{
 			conv.f_zero = 1;
 			conv.f_zero_f = 1;

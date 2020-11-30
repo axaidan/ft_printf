@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 19:12:35 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 19:26:48 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,19 @@ t_conv			init_struct(void);
 int				putchar_ret(char c);
 int				putstr_ret(char *s);
 void			ft_putchar_fd(char c, int fd);
+int				ft_printf(const char *fmt, ...);
+
+/*
+ * LIB - utils
+ */
 int				ft_isdigit(int c);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strdup(const char *s);
 char			*ft_itoa(int x);
 size_t			ft_strlen(const char *s);
-int				ft_printf(const char *fmt, ...);
 
 /*
- * BONUS
+ * BONUS - doubles
  */
 int				get_relevant(double d, int afterpoint);
 double			roundup_p_zero(double d);
