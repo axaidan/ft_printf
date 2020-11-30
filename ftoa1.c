@@ -18,9 +18,12 @@ static int		count_int_p(double d, int neg)
 	int			chars;
 	long long	temp;
 
-	chars = (d == 0) ? 1 : 0;
-	chars += (neg) ? 1 : 0;
 	temp = (long long)d;
+	chars = 0;
+	if (temp == 0)
+		chars++;
+	if (neg)
+		chars++;
 	while (temp)
 	{
 		temp /= 10;
@@ -81,6 +84,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 	int		int_len;
 
 	int_len = count_int_p(d, neg);
+	printf("\nint_len\t=\t%d\n", int_len);
 	if (!(s_i = malloc(sizeof(char) * (int_len + 1))))
 		return (NULL);
 	str = s_i;
@@ -92,6 +96,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 		return (NULL);
 	}
 	s_i = str;
+	printf("\ts_i\t=\t\"%s\"\n\ts_f\t=\t\"%s\"\n", s_i, s_f);
 	str = ft_strjoin(s_i, s_f);
 	free(s_i);
 	free(s_f);
