@@ -38,10 +38,7 @@ static void		make_i_str(char **str, long long n, int neg)
 		neg = 0;
 	}
 	if (n < 10)
-	{
 		*((*str)++) = n + '0';
-		**str = '\0';
-	}
 	if (n >= 10)
 	{
 		make_i_str(str, n / 10, neg);
@@ -88,6 +85,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 		return (NULL);
 	str = s_i;
 	make_i_str(&s_i, (long long)d, neg);
+	str[int_len] = '\0';
 	if (!(s_f = make_f_str(d, afterpoint)))
 	{
 		free(s_i);
