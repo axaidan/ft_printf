@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 20:08:43 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 20:11:05 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_conv	parse_flags(t_conv conv, const char **fmt)
 {
 //	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
-	while ((**fmt == '-')) || (**fmt == '0'))
+	while ((**fmt == '-') || (**fmt == '0'))
 	{
 		if (**fmt == '-')
 		{
