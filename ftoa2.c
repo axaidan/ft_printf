@@ -31,10 +31,7 @@ int		get_relevant(double d, int afterpoint)
 		i++;
 	}
 	if (relevant >= 5)
-	{
-		printf("\n\trelvnt\t=\t%d\n", relevant);
 		return (relevant);
-	}
 	else
 		return (0);
 }
@@ -59,7 +56,6 @@ void	roundup_str(char **str, int i)
 		(*str)[i]++;
 	else if ((*str)[i] == '9')
 	{
-		printf("passing '9' to '0'\n");
 		(*str)[i] = '0';
 		roundup_str(str, i - 1);
 	}

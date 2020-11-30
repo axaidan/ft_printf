@@ -81,7 +81,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 	int		int_len;
 
 	int_len = count_int_p(d, neg);
-	if (!(s_i = malloc(sizeof(char) * (int_len + 2)))) // +2 for maybe roundup str
+	if (!(s_i = malloc(sizeof(char) * (int_len + 1))))
 		return (NULL);
 	str = s_i;
 	make_i_str(&s_i, (long long)d, neg);
