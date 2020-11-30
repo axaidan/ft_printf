@@ -73,7 +73,6 @@ double	roundup_p_zero(double d)
 {
 	int		sign;
 	double	f_p;
-	double	temp;
 	int		relevant;
 
 	sign = (d < 0) ? -1 : 1;
