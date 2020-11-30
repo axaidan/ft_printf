@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/27 18:55:12 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 18:36:43 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ t_conv	parse_flags(t_conv conv, const char **fmt)
 		if (**fmt == '-')
 		{
 			conv.f_minus = 1;
+			conv.f_zero_f = 0;
 			conv.f_zero = 0;
 		}
 		if (**fmt == '0' && !(conv.f_minus))
+		{
 			conv.f_zero = 1;
+			conv.f_zero_f = 1;
+		}
 		(*fmt)++;
 	}
 	return (conv);

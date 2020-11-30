@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 16:37:20 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 18:35:18 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_conv
 	int				width;
 	int				preci;
 	int				f_zero;
+	int				f_zero_f;
 	int				f_minus;
 	char			*sub;
 }				t_conv;
