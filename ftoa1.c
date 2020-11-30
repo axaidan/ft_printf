@@ -81,7 +81,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 	int		int_len;
 
 	int_len = count_int_p(d, neg);
-	if (!(s_i = malloc(sizeof(char) * (int_len + 1))))
+	if (!(s_i = malloc(sizeof(char) * (int_len + 2)))) // +2 for maybe roundup str
 		return (NULL);
 	str = s_i;
 	make_i_str(&s_i, (long long)d, neg);
@@ -110,10 +110,11 @@ char			*ftoa(double d, int afterpoint)
 		neg = (d < 0) ? 1 : 0;
 	else
 		neg = zero_is_signed((long double)d);
-//	printf("d\t=\t\"%.*f\"\n", afterpoint, d);
-	d = (afterpoint == 0) ? roundup_p_zero(d) : roundup(d, afterpoint);
+	if (afterpoint == 0)
+		d = roundup_p_zero(d);
 	if (!(str = make_dbl_str(d, afterpoint, neg)))
 		return (NULL);
-//	printf("res\t=\t\"%s\"\n", str);
+	if (afterpoint != 0 && get_relevant(d, afterpoint))
+		roundup_str(&str, ft_strlen(str) - 1);	 
 	return (str);
 }

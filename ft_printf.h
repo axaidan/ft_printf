@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/27 18:22:47 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 16:37:20 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int				ft_printf(const char *fmt, ...);
 /*
  * BONUS
  */
-double			roundup(double d, int afterpoint);
+int				get_relevant(double d, int afterpoint);
 double			roundup_p_zero(double d);
+void			roundup_str(char **str, int i);
 int				zero_is_signed(long double lf);
 char			*ftoa(double d, int afterpoint);
 int				print_double(t_conv conv, va_list args);

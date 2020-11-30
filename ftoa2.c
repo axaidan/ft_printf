@@ -13,17 +13,12 @@
 
 #include "ft_printf.h"
 
-double	roundup(double d, int afterpoint)
+int		get_relevant(double d, int afterpoint)
 {
 	double		f_p;
-	int			sign;
 	int			i;
-	int			j;
-	double		pow;
-	double		d_temp;
-	long long	relevant;
+	int			relevant;
 
-	sign = (d < 0) ? -1 : 1;
 	d = (d < 0) ? -d : d;
 	f_p = d - (long long)d;
 	i = 0;
@@ -32,22 +27,46 @@ double	roundup(double d, int afterpoint)
 		f_p = f_p - (long long)f_p;
 		f_p *= 10;
 		if (i == afterpoint)
-		{
-			relevant = (long long)f_p % 10;
-			printf("\n\trelevt\t=\t%lld\n\ti\t=\t%d\n", relevant, i);
-		}
+			relevant = (int)f_p % 10;
 		i++;
 	}
-	pow = 1;
-	while (--i)
-		pow *= 10;
 	if (relevant >= 5)
 	{
-		d += 1 / pow;
-		printf("\tadd\t=\t%.*f\n", afterpoint + 1, 1 / pow);
-		printf("\t(d_temp == d)\t=\t%d\n", d_temp == d);
+		printf("\n\trelvnt\t=\t%d\n", relevant);
+		return (relevant);
 	}
-	return (d * sign);
+	else
+		return (0);
+}
+
+void	shift_str(char **str)
+{
+	int		neg;
+	char	*temp;
+	char	*buf;
+
+	temp = *str;
+	neg = ((*str)[0] == '-') ? 1 : 0;
+	buf = (neg) ? "-1" : "1";
+	temp = ft_strjoin(buf, (*str) + neg);
+	free(*str);
+	*str = temp;
+}
+
+void	roundup_str(char **str, int i)
+{
+	if ((*str)[i] >= '0' && (*str)[i] <= '8')
+		(*str)[i]++;
+	else if ((*str)[i] == '9')
+	{
+		printf("passing '9' to '0'\n");
+		(*str)[i] = '0';
+		roundup_str(str, i - 1);
+	}
+	else if ((*str)[i] == '.')
+		roundup_str(str, i - 1);
+	else if ((*str)[i] == '-' || i == -1)
+		shift_str(str);
 }
 
 double	roundup_p_zero(double d)
