@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 17:34:09 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/27 18:22:28 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 20:44:44 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*zero_pad_int(t_conv conv)
 	neg = (conv.sub[0] == '-') ? 1 : 0;
 	if (base_len >= conv.width)
 		return (conv.sub);
-	if (!(temp = malloc(sizeof(char) * (base_len + 1))))
+	if (!(temp = malloc(sizeof(char) * (base_len + 1)))) // SHOULDN'T I MALLOC (WIDTH + 1)
 	{
 		free(conv.sub);
 		return (NULL);

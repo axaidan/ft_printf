@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 20:22:27 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/11/30 20:53:07 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_conv	parse_flags(t_conv conv, const char **fmt)
 {
-	//	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
-	while ((**fmt == '-') || (**fmt == '0'))
+	while ((**fmt == '-' && !(conv.f_minus)) || (**fmt == '0'))
+	//while ((**fmt == '-') || (**fmt == '0'))
 	{
 		if (**fmt == '-')
 		{
@@ -23,8 +23,8 @@ t_conv	parse_flags(t_conv conv, const char **fmt)
 			conv.f_zero_f = 0;
 			conv.f_zero = 0;
 		}
-		//	if (**fmt == '0' && !(conv.f_minus))
-		if (**fmt == '0')
+		if (**fmt == '0' && !(conv.f_minus))
+		//if (**fmt == '0')
 		{
 			conv.f_zero = 1;
 			conv.f_zero_f = 1;
@@ -39,8 +39,7 @@ t_conv	parse_preci(t_conv conv, const char **fmt, va_list args)
 	if (**fmt == '.')
 	{
 		conv.preci = 0;
-		if (!conv.f_zero_f)
-			conv.f_zero = 0;
+		conv.f_zero = 0;
 		(*fmt)++;
 	}
 	if (**fmt == '*')
