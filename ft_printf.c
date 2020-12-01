@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 18:39:02 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 10:51:45 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:00:17 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_conv	parse_width(t_conv conv, const char **fmt, va_list args)
 		if (conv.width < 0)
 		{
 			conv.f_minus = 1;
-			conv.f_zero = conv.f_zero_f;
+			conv.f_zero = 0;
 			conv.width = -conv.width;
 		}
 		(*fmt)++;
