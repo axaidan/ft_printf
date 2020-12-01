@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:41:21 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:43:27 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static char	*make_addr_str(t_conv conv, va_list args)
 	   return (NULL);
 	   }
 	   */
-	temp = conv.sub;
 	if (!conv.preci && !addr)
-		conv.sub = ft_strdup("");
+		*(conv.sub) = '\0';
+	//	conv.sub = ft_strdup("");
 	temp = conv.sub;
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
 	{
