@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:34:56 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:36:45 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static char	*make_addr_str(t_conv conv, va_list args)
 	temp = conv.sub;
 	if (!conv.preci && !addr)
 		conv.sub = ft_strdup("");
+	free(temp);
+	if (!conv.sub)
+		return (NULL);
 	temp = conv.sub;
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
 	{
