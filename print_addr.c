@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:22:38 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:25:18 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int			print_addr(t_conv conv, va_list args)
 	int		i;
 	int		j;
 
-	if (conv.preci == 0)
-		conv.preci = -1;
 	if (!(conv.sub = make_addr_str(conv, args)))
 		return (-1);
 	len = (int)ft_strlen(conv.sub);
