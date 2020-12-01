@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 15:59:11 by axaidan           #+#    #+#             */
-/*   Updated: 2020/11/30 19:26:48 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 13:38:59 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ size_t			ft_strlen(const char *s);
 /*
  * BONUS - doubles
  */
-int				get_relevant(double d, int afterpoint);
+int				get_relevant(long double d, int afterpoint);
 double			roundup_p_zero(double d);
 char			*roundup_str(char **str, int i);
 int				zero_is_signed(long double lf);

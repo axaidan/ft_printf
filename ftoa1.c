@@ -49,7 +49,7 @@ static void		make_i_str(char **str, long long n, int neg)
 	}
 }
 
-static char		*make_f_str(double d, int afterpoint)
+static char		*make_f_str(long double d, int afterpoint)
 {
 	char		*s;
 	int			len;
@@ -62,6 +62,7 @@ static char		*make_f_str(double d, int afterpoint)
 	if (!(s = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
+//	printf("\n");
 	while (i < len)
 	{
 		if (i == 0)
@@ -69,6 +70,7 @@ static char		*make_f_str(double d, int afterpoint)
 		else
 		{
 			d = (d - (long long)d) * 10;
+//			printf("\tmake_f, i\t=\t%d\t\td\t=\t%Lf\n", i, d);
 			s[i++] = ((long long)d) % 10 + '0';
 		}
 	}
@@ -89,7 +91,7 @@ static char		*make_dbl_str(double d, int afterpoint, int neg)
 	str = s_i;
 	make_i_str(&s_i, (long long)d, neg);
 	str[int_len] = '\0';
-	if (!(s_f = make_f_str(d, afterpoint)))
+	if (!(s_f = make_f_str((long double)d, afterpoint)))
 	{
 		free(s_i);
 		return (NULL);
@@ -118,7 +120,7 @@ char			*ftoa(double d, int afterpoint)
 		d = roundup_p_zero(d);
 	if (!(str = make_dbl_str(d, afterpoint, neg)))
 		return (NULL);
-	if (afterpoint != 0 && get_relevant(d, afterpoint))
-		roundup_str(&str, ft_strlen(str) - 1);	 
+	if (afterpoint != 0 && get_relevant((long double)d, afterpoint))
+		roundup_str(&str, ft_strlen(str) - 1);
 	return (str);
 }

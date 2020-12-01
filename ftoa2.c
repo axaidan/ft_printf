@@ -13,25 +13,32 @@
 
 #include "ft_printf.h"
 
-int		get_relevant(double d, int afterpoint)
+int		get_relevant(long double d, int afterpoint)
 {
-	double		f_p;
+	long double		f_p;
 	int			i;
-	int			relevant;
+	long double			relevant;
 
 	d = (d < 0) ? -d : d;
-	f_p = d - (long long)d;
+	//f_p = d - (long long)d;
+	f_p = d;
 	i = 0;
 	while (i < afterpoint + 1)
 	{
 		f_p = f_p - (long long)f_p;
-		f_p *= 10;
+	//	f_p *= 10;
 		if (i == afterpoint)
-			relevant = (int)f_p % 10;
+			relevant = f_p;
+		else
+			f_p *= 10;
 		i++;
 	}
-	if (relevant >= 5)
-		return (relevant);
+//	printf("\n\trelevant\t=\t%Lf\n", relevant);
+	relevant = relevant - (long long)relevant;
+//	printf("\n\trelevant\t=\t%Lf\n", relevant);
+	if (relevant >= 0.5)
+//		return (relevant);
+		return (1);
 	else
 		return (0);
 }
