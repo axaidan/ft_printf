@@ -6,41 +6,41 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:36:45 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:39:34 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-static char	*precise_addr(t_conv conv)
-{
-	int		i;
-	int		j;
-	int		len;
-	char	*temp;
+   static char	*precise_addr(t_conv conv)
+   {
+   int		i;
+   int		j;
+   int		len;
+   char	*temp;
 
-	len = ft_strlen(conv.sub);
-	if (!conv.preci)
-	{
-		free(conv.sub);
-		return (conv.sub = ft_strdup(""));
-	}
-	if (conv.preci < 0 || len >= conv.preci)
-		return (conv.sub);
-	if (!(temp = malloc(sizeof(char) * (conv.preci + 1))))
-		return (NULL);
-	i = 0;
-	while (len++ < conv.preci)
-		temp[i++] = '0';
-	j = 0;
-	while (conv.sub[j])
-		temp[i++] = conv.sub[j++];
-	temp[i] = '\0';
-	free(conv.sub);
-	return (temp);
-}
-*/
+   len = ft_strlen(conv.sub);
+   if (!conv.preci)
+   {
+   free(conv.sub);
+   return (conv.sub = ft_strdup(""));
+   }
+   if (conv.preci < 0 || len >= conv.preci)
+   return (conv.sub);
+   if (!(temp = malloc(sizeof(char) * (conv.preci + 1))))
+   return (NULL);
+   i = 0;
+   while (len++ < conv.preci)
+   temp[i++] = '0';
+   j = 0;
+   while (conv.sub[j])
+   temp[i++] = conv.sub[j++];
+   temp[i] = '\0';
+   free(conv.sub);
+   return (temp);
+   }
+   */
 
 static char	*make_addr_str(t_conv conv, va_list args)
 {
@@ -51,19 +51,21 @@ static char	*make_addr_str(t_conv conv, va_list args)
 	if (!(conv.sub = ltox(addr, 'x')))
 		return (NULL);
 	/*
-	temp = conv.sub;
-	if (!(conv.sub = precise_addr(conv)))
-	{
-		free(temp);
-		return (NULL);
-	}
-	*/
+	   temp = conv.sub;
+	   if (!(conv.sub = precise_addr(conv)))
+	   {
+	   free(temp);
+	   return (NULL);
+	   }
+	   */
 	temp = conv.sub;
 	if (!conv.preci && !addr)
-		conv.sub = ft_strdup("");
+		if (!(conv.sub = ft_strdup("")))
+		{
+			free(temp);
+			return (NULL);
+		}
 	free(temp);
-	if (!conv.sub)
-		return (NULL);
 	temp = conv.sub;
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
 	{
