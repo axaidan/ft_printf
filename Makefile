@@ -5,7 +5,8 @@ OPTIONS = -I
 ARC = ar rc
 SRCS = ft_printf.c \
 	   print_addr.c print_char.c print_hexa.c print_int.c print_str.c \
-	   utils_1.c utils_2.c utoa.c utox.c ltox.c ft_itoa.c
+	   utils_1.c utils_2.c utoa.c utox.c ltox.c ft_itoa.c \
+	   ftoa1.c ftoa2.c print_double.c
 
 OBJ = $(SRCS:.c=.o)
 
