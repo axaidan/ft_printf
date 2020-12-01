@@ -6,7 +6,7 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:25:18 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:29:51 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ static char	*make_addr_str(t_conv conv, va_list args)
 	if (!(conv.sub = ltox(addr, 'x')))
 		return (NULL);
 	temp = conv.sub;
+	/*
 	if (!(conv.sub = precise_addr(conv)))
 	{
 		free(temp);
 		return (NULL);
 	}
 	temp = conv.sub;
+	*/
 	if (!(conv.sub = ft_strjoin("0x", conv.sub)))
 	{
 		free(temp);
