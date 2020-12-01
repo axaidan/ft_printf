@@ -6,12 +6,13 @@
 /*   By: axaidan <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:36:27 by axaidan           #+#    #+#             */
-/*   Updated: 2020/12/01 11:29:51 by axaidan          ###   ########.fr       */
+/*   Updated: 2020/12/01 11:30:38 by axaidan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
 static char	*precise_addr(t_conv conv)
 {
 	int		i;
@@ -39,6 +40,7 @@ static char	*precise_addr(t_conv conv)
 	free(conv.sub);
 	return (temp);
 }
+*/
 
 static char	*make_addr_str(t_conv conv, va_list args)
 {
