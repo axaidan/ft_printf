@@ -79,10 +79,12 @@ double	roundup_p_zero(double d)
 	sign = (d < 0) ? -1 : 1;
 	d = (d < 0) ? -d : d;
 	f_p = d - (long long)d;
-	relevant = ((int)(f_p * 10)) % 10;
-	if (relevant == 5)
+//	relevant = ((int)(f_p * 10)) % 10;
+//	if (relevant == 5)
+	if (f_p == 0.5)
 		d = ((long long)d % 2 == 0) ? (long long)d : (long long)d + 1;
-	else if (relevant > 5)
+//	else if (relevant > 5)
+	else if (f_p > 0.5)
 		d = (long long)d + 1;
 	return (((double)d) * sign);
 }
