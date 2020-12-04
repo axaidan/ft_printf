@@ -16,8 +16,8 @@
 int		get_relevant(long double d, int afterpoint)
 {
 	long double		f_p;
-	int			i;
-	long double			relevant;
+	int				i;
+	long double		relevant;
 
 	d = (d < 0) ? -d : d;
 	//f_p = d - (long long)d;
